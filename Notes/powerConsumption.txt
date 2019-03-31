@@ -1,0 +1,10 @@
+Power Consumption :
+
+1mA LED OFF for 7s
+15mA LED ON for 1s
+
+2200mAh = 2200*3600 = 7 920 000 mAs (Battery Capacity)
+
+7s => (1*15+1*7)/7 = 3.14 mA for 1s
+
+(7 920 000 / 3.14) = 1 980 000s = 700.6h = 29.2 days
