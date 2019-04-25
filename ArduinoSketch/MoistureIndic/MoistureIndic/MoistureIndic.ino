@@ -34,9 +34,6 @@ const int MoistureSensorVoltagePin = 1;
 
 // Variables
 float moistureValue = 0; //0-1000
-float moistureValueMaped = 0; 
-float moistureValueMax=900;
-float moistureValueMin=650;
 int red=0; //0-255
 int green=0; //0-255
 
@@ -68,16 +65,11 @@ void loop() {
     
     // Read the moisture value and calculate green and red value
     digitalWrite(MoistureSensorVoltagePin,HIGH);
-    
     _delay_ms(10);
     moistureValue = analogRead(analogPin);
-    moistureValueMaped=map(moistureValue,moistureValueMin,moistureValueMax,0,255);
-    if (moistureValue>moistureValueMax) moistureValueMaped=255;
-    if (moistureValue<moistureValueMin) moistureValueMaped=0;
-    green = int(moistureValueMaped*0.5);
-    red = int((255.0-moistureValueMaped)*0.5);
+    green = int((255.0*moistureValue/1000.0)*0.5);
+    red = int((255.0-255.0*moistureValue/1000.0)*0.5);
     _delay_ms(10);
-    delay(3000);
     digitalWrite(MoistureSensorVoltagePin,LOW);
     // Set the color of the RGB Led for 1s
     myLed.setPixelColor(0, myLed.Color(red, green ,0));
